@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block titleblock %}
+HOME
+{% endblock %}
+{% block bodyblock %}
+
+{%for x in model%}
+<div class="row">
+    <div class="col-sm-3">
+        Creator: <a href="{%url 'postapp:post_details' pk=x.pk%}">{{x.creator}}</a>
+        <br>
+        <img src="/media/{{x.post_picture}}" height="200" width="200">
+        <br>
+        CAPTION: {{x.caption}}
+        <br>
+        <br>
+
+
+    </div>
+{%endfor%}    
+
+{% endblock %}

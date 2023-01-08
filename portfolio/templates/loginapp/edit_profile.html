@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block titleblock %}
+EDIT PROFILE
+{% endblock %}
+{% block bodyblock %}
+
+<h1> EDIT PROFILE!</h1>
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{form}}
+    <button type="submit">EDIT</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+
+{%block titleblock%}
+Profile Page
+{%endblock%}
+
+{%block bodyblock%}
+
+<div class="row">
+    <div class="col-sm-5">
+        {%if user.user_profile.profile_pic%}
+        <img src="/media/{{user.user_profile.profile_pic}}" height="100" width="150">
+        {%else%}
+        <img src="/media/profile_pic/download.png" height="100" width="150">
+        {%endif%}
+    </div>
+
+
+
+
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        Username: {{user.username}}
+        <br>
+        Email: {{user.email}}
+        <br>
+        Phone Number: {{user.user_profile.phone_number}}
+        <br>
+        Location: {{user.user_profile.location}}
+        <br>
+        webiste: {{user.user_profile.webiste}}
+        <br>
+        description: {{user.user_profile.description}}
+
+
+
+    </div>
+
+
+
+</div>
+<a href="{%url 'loginapp:edit_profile'%}">EDIT PROFILE!</a>
+<br>
+<br>
+<br>
+
+
+<h1>POSTS:</h1>
+{%for x in user.user_post.all%}
+
+<div class="card" style="width: 18rem;">
+    <img src="/media/{{x.post_picture}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Title : {{x.caption}}</h5>
+        <a href="{%url 'postapp:delete_post' pk=x.pk%}" class="btn btn-danger">Delete Post</a>
+        <a href="{%url 'postapp:edit_post'%}" class="btn btn-success">Edit Post</a>
+    </div>
+</div>
+
+{% empty %}
+<h1>NO POSTS</h1>
+{%endfor%}
+{%endblock%}
